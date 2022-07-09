@@ -6,18 +6,19 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:48:37 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/08 16:18:49 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:16:41 by sphh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
+void    ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *s)
 {
 	int		i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] )
 	{
 		i++;
 	}
@@ -29,11 +30,23 @@ size_t	ft_strlen_brkl(const char *s)
 	int		i;
 
 	i = 0;
-	while (s[i] != '\n')
+	while (s[i] != '\n' && s[i])
 	{
 		i++;
 	}
 	return (i);
+}
+
+int	ft_find_eof(const char *s, int	n)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	if (i == n)
+		return (0);
+	return (1);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -120,4 +133,34 @@ char	*ft_substr(char const	*s, unsigned int start, size_t len)
 	}
 	str[i] = '\0';
 	return (str);
+}
+
+void    *ft_calloc(size_t       count, size_t   size)
+{
+        void    *vp;
+
+        if (size == 0 || count == 0)
+        {
+                count = 1;
+                size = count;
+        }
+        vp = malloc(count * size);
+        if (vp == NULL)
+                return (NULL);
+        ft_bzero(vp, count * size);
+        return (vp);
+}
+
+void    ft_bzero(void *s, size_t n)
+{
+        size_t  i;
+        char    *tempchar;
+
+        i = 0;
+        tempchar = (char *)s;
+        while (i < n)
+        {
+                tempchar[i] = '\0';
+                i++;
+        }
 }

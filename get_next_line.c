@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/09 12:30:07 by sphh             ###   ########.fr       */
+/*   Updated: 2022/07/09 12:41:19 by sphh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ char	*get_next_line(int	fd)
 		return (0);
 	buf = ft_calloc(sizeof(char) * BUFFER_SIZE + 1, 1);
 	read(fd, buf, BUFFER_SIZE);
-	if (buf[0] == 0)
-		return (0);
 	str = ft_strdup(buf);
 	while (!ft_strchr(buf, '\n') && !ft_find_eof(buf, BUFFER_SIZE))
 	{
@@ -58,6 +56,20 @@ int	main(void)
 	char	*str;
 
 	fd = open("./file.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 }

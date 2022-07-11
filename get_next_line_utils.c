@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:48:37 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/09 12:16:41 by sphh             ###   ########.fr       */
+/*   Updated: 2022/07/11 18:56:36 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,6 @@ size_t	ft_strlen_brkl(const char *s)
 		i++;
 	}
 	return (i);
-}
-
-int	ft_find_eof(const char *s, int	n)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	if (i == n)
-		return (0);
-	return (1);
 }
 
 char	*ft_strchr(const char *s, int c)

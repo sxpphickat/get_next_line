@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/11 17:13:05 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:21:07 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <stdio.h>
-#define BUFFER_SIZE 2
+#define BUFFER_SIZE 42
 
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const	*s2);
@@ -36,14 +36,17 @@ char	*get_next_line(int	fd)
 	while (eof)
 	{
 		eof = read(fd, buf, BUFFER_SIZE);
-		if (!eof)
+		if (!eof && !rest)
 		{
 			printf("aaaaaaaaaaaaaaa");
 			return (NULL);
 		}
 		if (rest)
+		{
 			str = ft_strdup(rest);
-		else if (!str)
+			rest = NULL;
+		}
+		if (!str)
 			str = ft_strdup(buf);
 		else
 			str = ft_strjoin(str, buf);
@@ -63,6 +66,18 @@ int	main(void)
 	char	*str;
 
 	fd = open("./file.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 }

@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:48:37 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/12 14:20:54 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/12 14:26:59 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ char	*ft_strjoin(char const *s1, char const	*s2)
 
 	i = 0;
 	j = 0;
-	if (!s1)
-		s1 = ft_strdup("\0");
 	if (!s1 || !s2)
 		return (NULL);
 	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
@@ -77,7 +75,6 @@ char	*ft_strjoin(char const *s1, char const	*s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';
-	free((void *)s1);
 	return (str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/11 19:16:46 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/12 08:45:41 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 2
+#define BUFFER_SIZE 42
 #endif
 
 char	*ft_strchr(const char *s, int c);
@@ -32,9 +32,11 @@ char	*get_next_line(int	fd)
 	static char	*rest;
 	char		*buf;
 	char		*str;
+	char		*temp;
 	int			eof;
+	int			check;
 
-	if (fd <= 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 
 	buf = ft_calloc(sizeof(char) * BUFFER_SIZE + 1, 1);
@@ -42,55 +44,66 @@ char	*get_next_line(int	fd)
 	str = ft_strdup("");
 	while (eof > 0)
 	{
+		check = eof;
 		eof = read(fd, buf, BUFFER_SIZE);
+		if (eof < check)
+			buf = ft_substr(buf, 0, eof);
 		if (!eof && !rest)
+		{
+			free(buf);
+			if(str)
+			{
+				str = ft_strjoin(str, "\n");
+				return(str);
+			}
+			free(str);
 			return (NULL);
+		}
 		if (rest)
 		{
 			str = ft_strdup(rest);
 			rest = NULL;
 		}
 		if (!str)
+		{
 			str = ft_strdup(buf);
+		}
 		else
-			str = ft_strjoin(str, buf);
+		{
+			temp = ft_strdup(str);
+			free(str);
+			str = ft_strjoin(temp, buf);
+			free(temp);
+		}
 		if (ft_strchr(str, '\n'))
 		{
 			rest = ft_strchr(str, '\n');
 			rest++;
 			free(buf);
-			str = ft_substr(str, 0, ft_strlen_brkl(str) + 1);
+			temp = ft_strdup(str);
+			str = ft_substr(temp, 0, ft_strlen_brkl(temp) + 1);
 			return (str);
 		}
+	}
+	if(str)
+	{
+		str = ft_strjoin(str, "\n");
+		return(str);
 	}
 	return(NULL);
 }
 
 
+/*
 int	main(void)
 {
 	int	fd;
 	// tinha uma variavel maldita nao usada aqui O-o 
 
-	fd = open("./file.txt", O_RDONLY);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	fd = open("./file.txt", O_RDWR);
+	//write(fd, "minecraft\n", 10);
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 }
-
+*/

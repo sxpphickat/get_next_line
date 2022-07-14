@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/14 17:49:04 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/14 18:12:19 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ char	*ft_rest(char *temp)
 {
 	char	*rest;
 
-	if (!temp)
-	{
-		free(temp);
+	if (*temp == '\0')
 		return (NULL);
-	}
-	rest = ft_strdup(ft_strchr(temp, '\n'));
+	if (!ft_strchr(temp, '\n'))
+		rest = ft_strdup(ft_strchr(temp, '\0'));
+	else
+	{
+		rest = ft_strdup(ft_strchr(temp, '\n'));
 		rest++;
+	}
 	return (rest);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/14 18:12:19 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/14 19:24:17 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
+#define BUFFER_SIZE 4
 #endif
 
 char	*ft_strchr(const char *s, int c);
@@ -98,6 +98,7 @@ char	*get_next_line(int	fd)
 	return (str);
 }
 
+/*
 int	main(void)
 {
 	int	fd;
@@ -109,4 +110,4 @@ int	main(void)
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	//printf("%s", get_next_line(fd));
-}
+}*/

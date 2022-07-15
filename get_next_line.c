@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 09:36:06 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 09:49:09 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char	*ft_cute(char	*cute)
 		len++;
 	if (cute[len] == '\n')
 		len++;
+	free(cute);
 	return (ft_substr(cute, 0, len));
 }
 

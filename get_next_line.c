@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 12:16:51 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 15:38:29 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char	*get_next_line(int fd)
 	str = ft_cute(str);
 	return (str);
 }
-
 /*
 #include <stdio.h>
 #include <fcntl.h>
@@ -89,10 +88,8 @@ int	main(void)
 	int	fd;
 	// tinha uma variavel maldita nao usada aqui O-o
 	fd = open("./file.txt", O_RDWR);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	get_next_line(fd);
+	//printf("%s", get_next_line(fd));
 	//printf("%s", get_next_line(fd));
 	close(fd);
 }*/

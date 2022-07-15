@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 12:52:34 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 13:53:59 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ char	*ft_cute(char	*cute)
 	return (cutted);
 }
 
+
 char	*get_next_line(int fd)
 {
-	static char	*rest[4096];
+	static char	*rest[4096] = {0};
 	char		*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)

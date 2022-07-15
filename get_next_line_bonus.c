@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 12:13:33 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 12:52:34 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_line(int fd, char *str)
 		return (NULL);
 	if (!str)
 		str = ft_strdup("\0");
-	while (!ft_strchr(str, '\n') && eof > 0)
+	while (!ft_strchr(str, '\n') && eof > 0 && fd >= 0)
 	{
 		eof = read (fd, buffer, BUFFER_SIZE);
 		buffer[eof] = '\0';
@@ -75,9 +75,11 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = ft_line(fd, rest[fd]);
-	rest[fd] = ft_rest(str);
-	str = ft_cute(str);
+	rest[fd] = ft_line(fd, rest[fd]);
+	if (!rest[fd])
+		return(NULL);
+	str = ft_cute(rest[fd]);
+	rest[fd] = ft_rest(rest[fd]);
 	return (str);
 }
 

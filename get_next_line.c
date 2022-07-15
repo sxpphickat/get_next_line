@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 09:49:09 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 09:51:00 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ char	*ft_line(int fd, char *str)
 
 char	*ft_cute(char	*cute)
 {
-	int	len;
+	int		len;
+	char	*cutted;
 
 	len = 0;
 	if (!cute)
@@ -77,8 +78,9 @@ char	*ft_cute(char	*cute)
 		len++;
 	if (cute[len] == '\n')
 		len++;
+	cutted = ft_substr(cute, 0, len);
 	free(cute);
-	return (ft_substr(cute, 0, len));
+	return (cutted);
 }
 
 char	*get_next_line(int	fd)

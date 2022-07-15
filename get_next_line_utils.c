@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:48:37 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/14 19:23:03 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 09:12:35 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_strjoin(char const *s1, char const	*s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';
-	//free((void *)s1);
+	free((void *)s1);
 	return (str);
 }
 

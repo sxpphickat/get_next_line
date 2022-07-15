@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/14 19:24:17 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 09:36:06 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ char	*ft_rest(char *temp)
 	if (!ft_strchr(temp, '\n'))
 		rest = ft_strdup(ft_strchr(temp, '\0'));
 	else
-	{
-		rest = ft_strdup(ft_strchr(temp, '\n'));
-		rest++;
-	}
+		rest = ft_strdup(ft_strchr(temp, '\n') + 1);
 	return (rest);
 }
 
@@ -87,14 +84,13 @@ char	*get_next_line(int	fd)
 {
 	static char	*rest;
 	char		*str;
-	char		*temp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 
-	temp = ft_line(fd, rest);
-	rest = ft_rest(temp);
-	str = ft_cute(temp);
+	str = ft_line(fd, rest);
+	rest = ft_rest(str);
+	str = ft_cute(str);
 	return (str);
 }
 

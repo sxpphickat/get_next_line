@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 09:51:00 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:08:37 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_rest(char *temp)
 	if (*temp == '\0')
 		return (NULL);
 	if (!ft_strchr(temp, '\n'))
-		rest = ft_strdup(ft_strchr(temp, '\0'));
+		rest = ft_strdup("\0");
 	else
 		rest = ft_strdup(ft_strchr(temp, '\n') + 1);
 	return (rest);

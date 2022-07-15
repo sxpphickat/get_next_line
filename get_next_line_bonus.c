@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 12:16:51 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/15 12:13:33 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_rest(char	*temp)
 {
@@ -70,13 +70,13 @@ char	*ft_cute(char	*cute)
 
 char	*get_next_line(int fd)
 {
-	static char	*rest;
+	static char	*rest[4096];
 	char		*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = ft_line(fd, rest);
-	rest = ft_rest(str);
+	str = ft_line(fd, rest[fd]);
+	rest[fd] = ft_rest(str);
 	str = ft_cute(str);
 	return (str);
 }
@@ -84,6 +84,7 @@ char	*get_next_line(int fd)
 /*
 #include <stdio.h>
 #include <fcntl.h>
+
 int	main(void)
 {
 	int	fd;

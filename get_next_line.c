@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/18 11:52:05 by vipereir         ###   ########.fr       */
+/*   Created: 2022/07/18 16:26:24 by vipereir          #+#    #+#             */
+/*   Updated: 2022/07/18 16:26:29 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,24 @@ char	*ft_rest(char	*temp)
 char	*ft_line(int fd, char *str)
 {
 	char	*buffer;
-	int		eof;
+	int		count;
 
-	eof = 1;
+	count = 1;
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
 	if (!str)
 		str = ft_strdup("\0");
-	while (!ft_strchr(str, '\n') && eof > 0)
+	while (!ft_strchr(str, '\n') && count > 0)
 	{
-		eof = read (fd, buffer, BUFFER_SIZE);
-		buffer[eof] = '\0';
+		count = read (fd, buffer, BUFFER_SIZE);
+		if (count < 0)
+		{
+			free(buffer);
+			free(str);
+			return (NULL);
+		}
+		buffer[count] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
 	free(buffer);
@@ -91,9 +97,6 @@ int	main(void)
 	int	fd;
 	// tinha uma variavel maldita nao usada aqui O-o
 	fd = open("./file.txt", O_RDWR);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	//printf("%s", get_next_line(fd));

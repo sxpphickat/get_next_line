@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/18 12:27:01 by vipereir         ###   ########.fr       */
+/*   Created: 2022/07/18 16:26:46 by vipereir          #+#    #+#             */
+/*   Updated: 2022/07/18 16:26:49 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_rest(char	*temp)
 	if (*temp == '\0')
 		return (NULL);
 	if (!ft_strchr(temp, '\n'))
-		rest = ft_strdup(ft_strchr(temp, '\0'));
+		rest = ft_strdup("\0");
 	else
 		rest = ft_strdup(ft_strchr(temp, '\n') + 1);
 	return (rest);
@@ -28,24 +28,24 @@ char	*ft_rest(char	*temp)
 char	*ft_line(int fd, char *str)
 {
 	char	*buffer;
-	int		eof;
+	int		count;
 
-	eof = 1;
+	count = 1;
 	buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
 	if (!str)
 		str = ft_strdup("\0");
-	while (!(ft_strchr(str, '\n')) && eof > 0)
+	while (!(ft_strchr(str, '\n')) && count > 0)
 	{
-		eof = read (fd, buffer, BUFFER_SIZE);
-		if (eof < 0)
+		count = read (fd, buffer, BUFFER_SIZE);
+		if (count < 0)
 		{
 			free(buffer);
 			free(str);
 			return (NULL);
 		}
-		buffer[eof] = '\0';
+		buffer[count] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
 	free(buffer);

@@ -6,15 +6,13 @@
 /*   By: vipereir <vipereir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 08:42:00 by vipereir          #+#    #+#             */
-/*   Updated: 2022/07/15 12:12:58 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:16:57 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+
 # include <unistd.h>
 # include <stdlib.h>
 

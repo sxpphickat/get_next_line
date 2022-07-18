@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 13:53:59 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:01:53 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_rest(char	*temp)
 	if (*temp == '\0')
 		return (NULL);
 	if (!ft_strchr(temp, '\n'))
-		rest = ft_strdup("\0");
+		rest = ft_strdup(ft_strchr(temp, '\0'));
 	else
 		rest = ft_strdup(ft_strchr(temp, '\n') + 1);
 	return (rest);
@@ -36,9 +36,15 @@ char	*ft_line(int fd, char *str)
 		return (NULL);
 	if (!str)
 		str = ft_strdup("\0");
-	while (!ft_strchr(str, '\n') && eof > 0 && fd >= 0)
+	while (!(ft_strchr(str, '\n')) && eof > 0)
 	{
 		eof = read (fd, buffer, BUFFER_SIZE);
+		if (eof < 0)
+		{
+			free(buffer);
+			free(str);
+			return (NULL);
+		}
 		buffer[eof] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
@@ -71,7 +77,7 @@ char	*ft_cute(char	*cute)
 
 char	*get_next_line(int fd)
 {
-	static char	*rest[4096] = {0};
+	static char	*rest[4096];
 	char		*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -91,12 +97,15 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	int	fd;
+	int	fd2;
 	// tinha uma variavel maldita nao usada aqui O-o
 	fd = open("./file.txt", O_RDWR);
+	fd2 = open("./file2.txt", O_RDWR);
 	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd2));
 	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd2));
 	//printf("%s", get_next_line(fd));
 	close(fd);
+	close(fd2);
 }*/

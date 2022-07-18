@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/18 11:01:53 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/18 12:27:01 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ char	*ft_cute(char	*cute)
 	return (cutted);
 }
 
-
 char	*get_next_line(int fd)
 {
 	static char	*rest[4096];
@@ -82,18 +81,17 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	rest[fd] = ft_line(fd, rest[fd]);
-	if (!rest[fd])
-		return(NULL);
-	str = ft_cute(rest[fd]);
-	rest[fd] = ft_rest(rest[fd]);
+	str = ft_line(fd, rest[fd]);
+	if (!str)
+		return (NULL);
+	rest[fd] = ft_rest(str);
+	str = ft_cute(str);
 	return (str);
 }
 
 /*
 #include <stdio.h>
 #include <fcntl.h>
-
 int	main(void)
 {
 	int	fd;

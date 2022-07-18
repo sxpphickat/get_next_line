@@ -6,7 +6,7 @@
 /*   By: sphh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 22:17:04 by sphh              #+#    #+#             */
-/*   Updated: 2022/07/15 15:38:29 by vipereir         ###   ########.fr       */
+/*   Updated: 2022/07/18 11:52:05 by vipereir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,13 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	str = ft_line(fd, rest);
+	if (!str)
+		return (NULL);
 	rest = ft_rest(str);
 	str = ft_cute(str);
 	return (str);
 }
+
 /*
 #include <stdio.h>
 #include <fcntl.h>
@@ -88,8 +91,11 @@ int	main(void)
 	int	fd;
 	// tinha uma variavel maldita nao usada aqui O-o
 	fd = open("./file.txt", O_RDWR);
-	get_next_line(fd);
-	//printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 	//printf("%s", get_next_line(fd));
 	close(fd);
 }*/
